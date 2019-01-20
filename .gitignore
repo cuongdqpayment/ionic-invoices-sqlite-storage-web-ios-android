@@ -27,7 +27,10 @@ platforms/
 plugins/
 plugins/android.json
 plugins/ios.json
-www/
+#bo qua file setting parameter he thong
+#db/admin-setting.xlsx
+db/~$*.*
+#www/
 $RECYCLE.BIN/
 
 .DS_Store

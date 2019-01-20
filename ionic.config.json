@@ -1,5 +1,7 @@
 {
   "name": "ionic-invoices",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

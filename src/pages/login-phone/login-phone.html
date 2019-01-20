@@ -1,0 +1,145 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>AUTHENTICATION - XÁC THỰC</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="login-form-background">
+    <ion-slides (ionSlideDidChange)="slideChanged()">
+        <!-- #id=0 -->
+        <ion-slide>
+            <div class="wrapper">
+                <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="phoneFormGroup">
+                    <ion-item>
+                        <ion-label floating>Nhập số điện thoại (*)</ion-label>
+                        <ion-input type="text" formControlName="phone"></ion-input>
+                    </ion-item>
+                    <p *ngIf="phoneFormGroup.controls.phone.invalid && phoneFormGroup.controls.phone.touched">
+                        <span class="error">Vui lòng nhập số điện thoại di động gồm 9 chữ số KHÔNG CÓ số 0 ở đầu</span>
+                    </p>
+                    <ion-buttons start>
+                        <button ion-button type="submit" icon-end round [disabled]="!phoneFormGroup.controls.phone.valid">
+                            Yêu cầu xác thực
+                            <ion-icon name="share-alt"></ion-icon>
+                        </button>
+                    </ion-buttons>
+                </form>
+            </div>
+        </ion-slide>
+
+        <!-- #id=1 -->
+        <ion-slide>
+            <div class="wrapper">
+                <form class="login-form" (ngSubmit)="onSubmitKey()" [formGroup]="keyFormGroup">
+                    <ion-item>
+                        <ion-label floating>Nhập mã OTP gửi đến điện thoại (*)</ion-label>
+                        <ion-input type="text" formControlName="key"></ion-input>
+                    </ion-item>
+                    <p *ngIf="keyFormGroup.controls.key.invalid && keyFormGroup.controls.key.touched">
+                        <span class="error">Vui lòng nhập mã OTP có 6 chữ cái và số không có số 0</span>
+                    </p>
+                    <ion-buttons start>
+                        <button ion-button type="submit" icon-end round [disabled]="!keyFormGroup.controls.key.valid">
+                            Xác thực OTP
+                            <ion-icon name="share-alt"></ion-icon>
+                        </button>
+                    </ion-buttons>
+                </form>
+            </div>
+        </ion-slide>
+
+        <!-- #id=2 dang ky user, pass, ho ten, dia chi, email,  -->
+        <ion-slide>
+            <div class="wrapper user-info">
+                <form class="login-form" (ngSubmit)="onSubmitUserInfo()" [formGroup]="userFromGroup">
+                    <ion-item>
+                        <ion-label floating>Password - Mật khẩu(*)</ion-label>
+                        <ion-input type="password" formControlName="password"></ion-input>
+                    </ion-item>
+                    <p *ngIf="userFromGroup.controls.password.invalid && userFromGroup.controls.password.touched">
+                        <span class="error">Vui lòng nhập mật khẩu tối thiểu 6 chữ số chứa ít nhất 1 chữ hoa, 1 chữ
+                            thường và 1 ký tự đặc biệt</span>
+                    </p>
+                    <ion-item>
+                        <ion-label floating>Nick Name - Tên hiển thị(*)</ion-label>
+                        <ion-input type="nickname" formControlName="nickname"></ion-input>
+                    </ion-item>
+                    <p *ngIf="userFromGroup.controls.nickname.invalid && userFromGroup.controls.nickname.touched">
+                        <span class="error">Vui lòng nhập tên bí danh (nickname) để gợi nhớn tối thiểu 10 ký tự</span>
+                    </p>
+                    <ion-item>
+                        <ion-label floating>Full Name - Họ và tên đầy đủ(*)</ion-label>
+                        <ion-input type="name" formControlName="name"></ion-input>
+                    </ion-item>
+                    <p *ngIf="userFromGroup.controls.name.invalid && userFromGroup.controls.name.touched">
+                        <span class="error">Vui lòng nhập họ và tên đầy đủ bằng tiếng việt có dấu rõ ràng</span>
+                    </p>
+                    <ion-item>
+                        <ion-label floating>Email - Hộp thư điện tử</ion-label>
+                        <ion-input type="email" formControlName="email"></ion-input>
+                    </ion-item>
+                    <p *ngIf="userFromGroup.controls.email.invalid && userFromGroup.controls.email.touched">
+                        <span class="error">nhập định dạng email chính xác</span>
+                    </p>
+                    <ion-item>
+                        <!-- (địa chỉ tự động sinh ra theo location) -->
+                        <ion-label floating>Address - Địa chỉ đầy đủ</ion-label>
+                        <ion-input type="address" formControlName="address"></ion-input>
+                    </ion-item>
+                    <p *ngIf="userFromGroup.controls.address.invalid && userFromGroup.controls.address.touched">
+                        <span class="error">Vui lòng nhập địa chỉ rõ ràng theo vị trí liên lạc của bạn</span>
+                    </p>
+
+                    <ion-buttons start>
+                        <button ion-button type="submit" icon-end round>
+                            Cập nhập
+                            <ion-icon name="share-alt"></ion-icon>
+                        </button>
+                    </ion-buttons>
+
+                </form>
+            </div>
+
+        </ion-slide>
+
+        <!-- #id=3 dang ky anh dai dien  -->
+        <ion-slide>
+            <div class="wrapper">
+                <form class="login-form" (ngSubmit)="onSubmitImage()" [formGroup]="imageFormGroup">
+
+                    <ion-item *ngIf="isImageViewer">
+                        <ion-row>
+                            <ion-col *ngFor="let obj of resourceImages" col-12>
+                                <ion-card>
+                                    <img [src]="obj?.imageViewer" style="width: 100%; height: 100%;" />
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-buttons start>
+                            <button ion-button type="button" icon-end round>
+                                <input type="file" accept="image/*" formControlName="image" (change)="fileChange($event)">
+                                Avantar - Ảnh đại diện
+                                <ion-icon name="images"></ion-icon>
+                            </button>
+                        </ion-buttons>
+                    </ion-item>
+
+                    <ion-buttons start>
+                        <button ion-button type="submit" icon-end round>
+                            Cập nhập
+                            <ion-icon name="share-alt"></ion-icon>
+                        </button>
+                    </ion-buttons>
+
+                </form>
+            </div>
+        </ion-slide>
+
+    </ion-slides>
+
+    <div class="gradient"></div>
+
+</ion-content>

@@ -1,0 +1,69 @@
+page-login-phone {
+
+    input[type="file"]{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    } 
+    
+    .error{
+        color: red;
+        font-style: italic;
+    }
+
+    .login-form-background {
+        background: #4a47ff;
+        border-radius: 0.5em;
+        opacity: 0.9;
+        text-align:center;
+    }
+
+    .wrapper {
+        position: absolute;
+        height: 400px;
+        width: 320px;
+        left: 50%;
+        top: 50%;
+        margin-left: -160px;
+        margin-top: -90px;
+    }
+  
+    .wrapper .login-form {
+        border: 1px solid #FFFFFF;
+        margin: 0 auto;
+        position: relative;
+        border-radius: 0.5em !important;
+        background: #31b0c4;
+        text-align:center;
+    }
+
+    .wrapper .login-form ion-item{
+        border-radius: 0.3em;
+        opacity: 0.7;
+    }
+
+    .user-info{
+        margin-left: -160px;
+        margin-top: -165px;
+
+    }
+
+    .gradient {
+        background-image: url("../../assets/imgs/gradient.png");
+        background-repeat: no-repeat;
+        height: 700px;
+        left: 50%;
+        margin-left: -350px;
+        margin-top: -350px;
+        position: fixed;
+        top: 50%;
+        width: 700px;
+        z-index: -100;
+    }
+  
+}
